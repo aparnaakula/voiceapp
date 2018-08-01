@@ -8,9 +8,7 @@ import com.myapp.voiceapp.user.UserService;
 
 import java.security.Principal;
 
-/**
- * Created by Chris Bay
- */
+
 public abstract class AbstractBaseController {
 
     @Autowired

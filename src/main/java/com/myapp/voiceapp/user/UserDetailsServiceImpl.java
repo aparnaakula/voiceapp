@@ -14,9 +14,6 @@ import com.myapp.voiceapp.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Chris Bay
- */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

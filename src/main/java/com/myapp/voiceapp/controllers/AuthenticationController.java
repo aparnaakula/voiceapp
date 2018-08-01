@@ -13,9 +13,7 @@ import com.myapp.voiceapp.user.EmailExistsException;
 import javax.validation.Valid;
 import java.security.Principal;
 
-/**
- * Created by Chris Bay
- */
+
 @Controller
 public class AuthenticationController extends AbstractBaseController {
 

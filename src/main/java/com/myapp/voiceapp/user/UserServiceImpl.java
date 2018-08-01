@@ -10,9 +10,7 @@ import com.myapp.voiceapp.repositories.UserRepository;
 
 import javax.transaction.Transactional;
 
-/**
- * Created by Chris Bay
- */
+
 @Service
 public class UserServiceImpl implements UserService {
 

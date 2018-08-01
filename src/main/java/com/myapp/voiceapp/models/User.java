@@ -9,9 +9,6 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Chris Bay
- */
 @Entity
 public class User extends AbstractEntity {
 
