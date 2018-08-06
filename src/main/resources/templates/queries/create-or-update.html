@@ -14,31 +14,31 @@
             <form id="eventForm" method="post" th:action="${actionUrl}" th:object="${query}">
                 <input type="hidden" th:field="*{uid}" />
                 <div class="form-group">
-                    <label th:for="title">Title</label>
+                    <label th:for="title">Title : </label>
                     <input th:errorclass="is-invalid" class="form-control" th:field="*{title}" required="required" />
                     <div class="invalid-feedback" th:errors="*{title}"></div>
                 </div>
 
                 <!--<div class="form-group">-->
-                    <!--<label th:for="location">Location</label>-->
-                    <!--<input th:errorclass="is-invalid" class="form-control" th:field="*{location}" />-->
-                    <!--<div class="invalid-feedback" th:errors="*{location}"></div>-->
+                <!--<label th:for="location">Location</label>-->
+                <!--<input th:errorclass="is-invalid" class="form-control" th:field="*{location}" />-->
+                <!--<div class="invalid-feedback" th:errors="*{location}"></div>-->
                 <!--</div>-->
                 <div class="form-group">
-                    <label th:for="option_1">Agree</label>
+                    <label th:for="option_1">Option 1: (create any option type, like Agree/DisAgree, Yes/No) </label>
                     <input type="text" rows="3" th:errorclass="is-invalid"
-                              class="form-control" th:field="*{option_1}" required="required"></textarea>
+                           class="form-control" th:field="*{option_1}" required="required"></textarea>
                     <div class="invalid-feedback" th:errors="*{option_1}"></div>
                 </div>
                 <div class="form-group">
-                    <label th:for="option_2">Disagree</label>
+                    <label th:for="option_2">Option 2: (create any option type, like Agree/DisAgree, Yes/No)</label>
                     <input type="text" rows="3" th:errorclass="is-invalid"
                            class="form-control" th:field="*{option_2}" required="required"></textarea>
                     <div class="invalid-feedback" th:errors="*{option_2}"></div>
 
                 </div>
                 <div class="form-group">
-                    <label for="categories">Category</label>
+                    <label for="categories">Category: </label>
                     <select name="categories" id="categories" class="form-control" multiple="multiple">
                         <option th:each="category : ${categories}"
                                 th:value="${category.uid}"
@@ -48,7 +48,7 @@
                     <div class="invalid-feedback" th:errors="*{categories}"></div>
                 </div>
                 <div class="form-group">
-                    <label th:for="description">Date Posted</label>
+                    <label th:for="description">Activate on: </label>
                     <input id="datepicker" th:errorclass="is-invalid" class="form-control" th:field="*{startDate}" required="required" />
                     <div class="invalid-feedback" th:errors="*{startDate}"></div>
                 </div>

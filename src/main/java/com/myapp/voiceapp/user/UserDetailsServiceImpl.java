@@ -30,13 +30,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         return new org.springframework.security.core.userdetails.User
-                    (user.getEmail(),
-                    user.getPassword(),
-                    user.isEnabled(),
-                    /*accountNonExpired*/ true,
-                    /*credentialsNonExpired*/ true,
-                    /*accountNonLocked*/ true,
-                    getAuthorities(user.getRoles()));
+                (user.getEmail(),
+                        user.getPassword(),
+                        user.isEnabled(),
+                        /*accountNonExpired*/ true,
+                        /*credentialsNonExpired*/ true,
+                        /*accountNonLocked*/ true,
+                        getAuthorities(user.getRoles()));
     }
 
     private static List<GrantedAuthority> getAuthorities (List<String> roles) {

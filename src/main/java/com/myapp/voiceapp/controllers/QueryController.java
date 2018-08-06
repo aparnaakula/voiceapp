@@ -1,9 +1,9 @@
 package com.myapp.voiceapp.controllers;
 
 import com.myapp.voiceapp.models.Query;
-import com.myapp.voiceapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -34,6 +34,7 @@ public class QueryController extends AbstractBaseController {
     public String listEvents(Model model) {
         List<Query> allQueries = queryRepository.findAll();
         model.addAttribute("queries", allQueries);
+        model.addAttribute("categories", categoryRepository.findAll());
         return "queries/list";
     }
 
@@ -56,12 +57,13 @@ public class QueryController extends AbstractBaseController {
 
         syncVolunteerLists(volunteerUids, query.getCategories());
 
-        User usr = (User)SecurityContextHolder.getContext().getAuthentication().getDetails();
-        System.out.println(usr);
+        User usr = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        query.setUserId(usr.getUsername());
 
         queryRepository.save(query);
 
-        return "redirect:/queries/detail/" + query.getUid();
+        return "redirect:/queries";
     }
 
     @GetMapping(value = "detail/{uid}")
@@ -79,6 +81,19 @@ public class QueryController extends AbstractBaseController {
         }
 
         return "queries/details";
+    }
+
+    @PostMapping(value = "updateRatingCount/{uid}")
+    public String updateRatingCount(@PathVariable int uid,@RequestParam(name = "type") String type, HttpServletRequest request) {
+
+        Query query = queryRepository.findById(uid).get();
+        if(type!=null && type.equals("option_1")) {
+            query.setOption_1_count(query.getOption_1_count()+1);
+        } else if(type!=null && type.equals("option_2")) {
+            query.setOption_2_count(query.getOption_2_count()+1);
+        }
+        queryRepository.save(query);
+        return "redirect:/queries";
     }
 
     @GetMapping(value = "update/{uid}")
@@ -111,7 +126,7 @@ public class QueryController extends AbstractBaseController {
         queryRepository.save(query);
         model.addFlashAttribute(MESSAGE_KEY, "success|Updated queries: " + query.getTitle());
 
-        return "redirect:/queries/detail/" + query.getUid();
+        return "redirect:/queries";
     }
 
     @PostMapping(value = "delete/{uid}")

@@ -1,18 +1,17 @@
 package com.myapp.voiceapp.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -38,6 +37,9 @@ public class Query extends AbstractEntity {
 
     private String userId;
 
+    private int option_1_count;
+
+    private int option_2_count;
 
     @ManyToMany
     private final List<Category> categories = new ArrayList<>();
@@ -118,12 +120,21 @@ public class Query extends AbstractEntity {
         this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "Query{" +
-                "title='" + title + '\'' +
-                ", startDate=" + startDate +
-                '}';
+
+    public int getOption_1_count() {
+        return option_1_count;
+    }
+
+    public void setOption_1_count(int option_1_count) {
+        this.option_1_count = option_1_count;
+    }
+
+    public int getOption_2_count() {
+        return option_2_count;
+    }
+
+    public void setOption_2_count(int option_2_count) {
+        this.option_2_count = option_2_count;
     }
 
     public List<Category> getCategories() {
